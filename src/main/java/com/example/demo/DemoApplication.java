@@ -12,7 +12,9 @@ public class DemoApplication {
         //Scan column and row
         String columnAndRow = "3 3";
 
-        String finalOutputSequence = getBiggerSequenceAdjacMatrix(columnAndRow);
+        int[] matrizInputs = {5, 8, 7, 6, 9, 1, 4, 3, 2};
+
+        String finalOutputSequence = getBiggerSequenceAdjacMatrix(columnAndRow, matrizInputs);
 
         System.out.println();
         System.out.println("Output: ");
@@ -20,7 +22,7 @@ public class DemoApplication {
         System.out.println();
     }
 
-    public static String getBiggerSequenceAdjacMatrix(String columnAndRow) {
+    public static String getBiggerSequenceAdjacMatrix(String columnAndRow, int[] matrizInputs ) {
 
         String[] columnAndRowSplit = columnAndRow.split(" ");
 
@@ -29,7 +31,7 @@ public class DemoApplication {
 
         int[][] inputs = new int[columnSize][rowSize];
 
-        int[] matrizInputs = {5, 8, 7, 6, 9, 1, 4, 3, 2};
+
 
         int count = 0;
 
