@@ -12,7 +12,7 @@ public class DemoApplication {
         //Scan column and row
         String columnAndRow = "3 3";
 
-        int[] matrizInputs = {5, 8, 7, 6, 9, 1, 4, 3, 2};
+        Integer[] matrizInputs = {5, 8, 7, 6, 9, 1, 4, 3, 2};
 
         String finalOutputSequence = getBiggerSequenceAdjacMatrix(columnAndRow, matrizInputs);
 
@@ -22,15 +22,14 @@ public class DemoApplication {
         System.out.println();
     }
 
-    public static String getBiggerSequenceAdjacMatrix(String columnAndRow, int[] matrizInputs ) {
+    public static String getBiggerSequenceAdjacMatrix(String columnAndRow, Integer[] matrizInputs) {
 
         String[] columnAndRowSplit = columnAndRow.split(" ");
 
-        int columnSize = Integer.parseInt(columnAndRowSplit[0]);
-        int rowSize = Integer.parseInt(columnAndRowSplit[1]);
+        Integer columnSize = Integer.parseInt(columnAndRowSplit[0]);
+        Integer rowSize = Integer.parseInt(columnAndRowSplit[1]);
 
-        int[][] inputs = new int[columnSize][rowSize];
-
+        Integer[][] inputs = new Integer[columnSize][rowSize];
 
 
         int count = 0;
@@ -42,7 +41,7 @@ public class DemoApplication {
             }
         }
 
-        List<int[]> adjacentsCoordinates = getAdjacentsCoordinatesOnInput(inputs);
+        List<Integer[]> adjacentsCoordinates = getAdjacentsCoordinatesOnInput(inputs);
 
         ArrayList<ArrayList<Integer>> listSequences = new ArrayList<>();
         for (int i = 0; i < adjacentsCoordinates.size(); i++) {
@@ -51,26 +50,23 @@ public class DemoApplication {
 
         ArrayList<ArrayList<Integer>> finalListVector = getFinalSequence(listSequences);
 
-        String finalOutputSequence = getFinalOutputSequence(finalListVector);
-
-        return finalOutputSequence;
-
+        return getFinalOutputSequence(finalListVector);
     }
 
     private static String getFinalOutputSequence(ArrayList<ArrayList<Integer>> finalListVector) {
-        String finalOutput = "";
+        StringBuilder builder = new StringBuilder();
+
         for (int i = 0; i < finalListVector.size(); i++) {
             for (int j = 0; j < finalListVector.get(i).size(); j++) {
-
-                finalOutput = finalOutput + (finalListVector.get(i).get(j) + " ");
+                builder.append(finalListVector.get(i).get(j) + " ");
             }
         }
 
-        return finalOutput;
+        return builder.toString();
     }
 
-    private static List<int[]> getAdjacentsCoordinatesOnInput(int[][] inputs) {
-        List<int[]> adjacentsCoordinates = new ArrayList<>();
+    private static List<Integer[]> getAdjacentsCoordinatesOnInput(Integer[][] inputs) {
+        List<Integer[]> adjacentsCoordinates = new ArrayList<>();
         for (int i = 0; i < inputs.length; i++) {
             for (int j = 0; j < inputs[i].length; j++) {
                 adjacentsCoordinates.add(getAdjacentsCoordinates(i, j, inputs));
@@ -96,7 +92,7 @@ public class DemoApplication {
         return aux;
     }
 
-    private static ArrayList<Integer> getSequenceAdjacentsCoordinates(int[] adjacentsCoordinates) {
+    private static ArrayList<Integer> getSequenceAdjacentsCoordinates(Integer[] adjacentsCoordinates) {
         ArrayList<Integer> listSequence = new ArrayList<>();
         int count = 0;
         for (int i = 0; i < adjacentsCoordinates.length; i++) {
@@ -119,9 +115,9 @@ public class DemoApplication {
         return listSequence;
     }
 
-    public static int[] getAdjacentsCoordinates(int row, int column, int[][] inputs) {
+    public static Integer[] getAdjacentsCoordinates(Integer row, Integer column, Integer[][] inputs) {
 
-        int[] adjacentsCoordinates = new int[5];
+        Integer[] adjacentsCoordinates = new Integer[5];
         int count = 0;
         for (int i = 0; i < inputs.length; i++) {
             for (int j = 0; j < inputs[i].length; j++) {
@@ -135,7 +131,7 @@ public class DemoApplication {
         return adjacentsCoordinates;
     }
 
-    private static void reverseRow(int[] v) {
+    private static void reverseRow(Integer[] v) {
         int initRow = 0;
         int finalRow = v.length - 1;
 
@@ -146,7 +142,7 @@ public class DemoApplication {
         }
     }
 
-    private static void tradeValues(int[] v, int initRow, int finalRow) {
+    private static void tradeValues(Integer[] v, Integer initRow, Integer finalRow) {
         int aux = v[initRow];
         v[initRow] = v[finalRow];
         v[finalRow] = aux;
